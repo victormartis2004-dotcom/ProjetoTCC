@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BodyTrack</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ProjetoTCC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm px-3" style="background-color: #000;">
+            <div class="container-fluid">
+                <!-- Nome do site -->
+                <a class="navbar-brand fw-bold"
+                   asp-area="" asp-controller="Home" asp-action="Index"
+                   style="color: #e50914;">
+                    BodyTrack
+                </a>
+
+                <!-- Botão hamburguer (mobile) -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <!-- Itens à esquerda -->
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Account" asp-action="Perfil">Minha Ficha</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Treinos" asp-action="Index">Treinos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Progresso" asp-action="Index">Progressão</a>
+                            </li>
+                        </ul>
+
+                        <!-- Itens à direita -->
+                        <ul class="navbar-nav align-items-center">
+                            <!-- Saudação -->
+                            <li class="nav-item">
+                                <span class="nav-link text-light">Olá, @User.Identity.Name</span>
+                            </li>
+
+                            <!-- Logout -->
+                            <li class="nav-item">
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-sm"
+                                            style="background-color: #e50914; color: white; border-radius: 20px;">
+                                        Sair
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <!-- Botão de login quando não logado -->
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a asp-controller="Account" asp-action="Login" class="btn"
+                                   style="background-color:#e50914; color:#fff; border-radius:8px; padding:5px 15px;">
+                                    Entrar
+                                </a>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="text-center py-3" style="background-color: #000; color: #aaa;">
+        <div class="container">
+            <span>&copy; 2025 - <span style="color:#e50914;">BodyTrack</span></span>
+            <span class="mx-2">|</span>
+            <a asp-area="" asp-controller="Home" asp-action="Privacy"
+               style="color:#e50914; text-decoration:none;">Privacidade</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

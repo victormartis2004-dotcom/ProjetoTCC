@@ -1,0 +1,88 @@
+﻿html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fundo escuro da página */
+.auth-page {
+    min-height: 100vh;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Card central do formulário */
+.auth-card {
+    width: 400px;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    border: none;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+    /* Título */
+    .auth-card h2 {
+        color: #e50914;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Labels dos inputs */
+    .auth-card label {
+        color: #fff;
+    }
+
+    /* Links (ex: "Já possui uma conta?") */
+    .auth-card a {
+        color: #0d6efd;
+        text-decoration: none;
+    }
+
+        .auth-card a:hover {
+            text-decoration: underline;
+        }
+
+/* Container dos botões */
+.auth-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+/* Estilo base para todos os botões */
+.auth-btn {
+    width: 100px;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Botão vermelho (Entrar / Cadastrar) */
+.auth-btn-primary {
+    background-color: #e50914;
+}
+
+    .auth-btn-primary:hover {
+        background-color: #b20710;
+    }
+
+/* Botão preto (Voltar) */
+.auth-btn-secondary {
+    background-color: black;
+    color: white !important;
+}
+
+    .auth-btn-secondary:hover {
+        background-color: #333;
+        color: white !important;
+    }

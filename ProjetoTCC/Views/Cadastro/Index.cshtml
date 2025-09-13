@@ -1,0 +1,71 @@
+﻿@model ProjetoTCC.ViewModels.CadastroViewModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Cadastro";
+}
+
+<link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+
+<div class="auth-page">
+    <div class="card auth-card">
+        <h2>Cadastrar</h2>
+
+        <form asp-controller="Account" asp-action="Register" method="post">
+            <div class="mb-3">
+                <label asp-for="Nome" class="form-label"></label>
+                <input asp-for="Nome" class="form-control" placeholder="Digite seu nome completo" required />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Sobrenome" class="form-label"></label>
+                <input asp-for="Sobrenome" class="form-control" placeholder="Digite seu nome completo" required />
+                <span asp-validation-for="Sobrenome" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DataNascimento" class="form-label"></label>
+                <input asp-for="DataNascimento" type="date" class="form-control" required />
+                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Altura" class="form-label"></label>
+                <input asp-for="Altura" type="number" class="form-control" placeholder="Ex: 170" required />
+                <span asp-validation-for="Altura" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Peso" class="form-label"></label>
+                <input asp-for="Peso" type="number" class="form-control" placeholder="Ex: 65" required />
+                <span asp-validation-for="Peso" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" type="email" class="form-control" placeholder="Digite seu e-mail" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Senha" class="form-label"></label>
+                <input asp-for="Senha" type="password" class="form-control" placeholder="Digite sua senha" required />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 text-center">
+                <a asp-controller="Account" asp-action="Login">Já possui uma conta?</a>
+            </div>
+
+            <div class="auth-buttons-container">
+                <a asp-controller="Home" asp-action="Index" class="btn auth-btn auth-btn-secondary">Voltar</a>
+                <button type="submit" class="btn auth-btn auth-btn-primary">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

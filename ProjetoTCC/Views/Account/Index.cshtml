@@ -1,0 +1,40 @@
+﻿@model ProjetoTCC.ViewModels.LoginViewModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+<link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+
+<div class="auth-page">
+    <div class="card auth-card">
+        <h2>Entrar</h2>
+
+        <form asp-controller="Account" asp-action="Login" method="post" novalidate>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" placeholder="Digite seu e-mail" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" placeholder="Digite sua senha" type="password" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 text-center">
+                <a asp-controller="Account" asp-action="Register">Ainda não possui uma conta?</a>
+            </div>
+
+            <div class="auth-buttons-container">
+                <a asp-controller="Home" asp-action="Index" class="btn auth-btn auth-btn-secondary">Voltar</a>
+                <button type="submit" class="btn auth-btn auth-btn-primary">Entrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

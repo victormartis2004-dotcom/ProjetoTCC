@@ -1,0 +1,94 @@
+﻿/* Corpo e página com fundo preto total */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* fundo preto total */
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+/* Container principal da página */
+.perfil-page {
+    min-height: 100vh; /* altura total da viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Card central com fundo escuro */
+.perfil-card {
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+    /* Título em vermelho */
+    .perfil-card h2 {
+        color: #e50914;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+/* Espaçamento entre as informações */
+.perfil-info {
+    margin-bottom: 1.5rem;
+}
+
+    /* Label acima do dado */
+    .perfil-info label {
+        font-weight: 600;
+        color: #bbb;
+        display: block; /* força a label a ficar em cima */
+        margin-bottom: 0.3rem;
+    }
+
+    /* Valor das informações */
+    .perfil-info div {
+        color: #fff;
+        font-weight: 400;
+    }
+
+/* Container dos botões */
+.perfil-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+/* Botões estilo base */
+.perfil-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.2s ease;
+    border: none;
+    color: white;
+}
+
+/* Botão vermelho (Editar) */
+.perfil-btn-primary {
+    background-color: #e50914;
+}
+
+    .perfil-btn-primary:hover {
+        background-color: #b20710;
+    }
+
+/* Botão cinza escuro (Voltar) */
+.perfil-btn-secondary {
+    background-color: #333;
+}
+
+    .perfil-btn-secondary:hover {
+        background-color: #555;
+    }
