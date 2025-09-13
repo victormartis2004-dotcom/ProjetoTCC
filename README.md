@@ -1,0 +1,27 @@
+CREATE DATABASE BodyTrack
+GO 
+
+USE BodyTrack
+GO
+
+CREATE TABLE Usuarios (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nome NVARCHAR(100) NOT NULL,
+    Sobrenome NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL UNIQUE,
+    SenhaHash NVARCHAR(255) NOT NULL,
+    DataNascimento DATE NOT NULL
+)
+GO
+
+CREATE TABLE Medidas (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioId INT NOT NULL,
+    Peso DECIMAL(5,2) NOT NULL,
+    Altura DECIMAL(5,2) NOT NULL,
+    DataRegistro DATETIME NOT NULL DEFAULT GETDATE(),
+
+    FOREIGN KEY (UsuarioId) REFERENCES Usuarios(Id)
+        ON DELETE CASCADE
+)
+GO
