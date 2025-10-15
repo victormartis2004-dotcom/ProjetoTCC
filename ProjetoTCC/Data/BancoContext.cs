@@ -10,6 +10,9 @@ namespace ProjetoTCC.Data
         }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Medida> Medidas { get; set; }
+        public DbSet<FichaTreino> FichaTreino { get; set; }
+        public DbSet<ExercicioFicha> ExercicioFicha { get; set; }
+        public DbSet<PesoExercicio> PesoExercicio { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

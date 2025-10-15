@@ -1,0 +1,76 @@
+﻿@model ProjetoTCC.ViewModels.FichaCadastroViewModel
+
+@{
+    ViewData["Title"] = "Nova Ficha de Treino";
+}
+
+<link rel="stylesheet" href="~/css/fichatreino.css" />
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post">
+    <div class="ficha-info">
+        <label for="NomeFicha">Nome da Ficha</label>
+        <input asp-for="NomeFicha" type="text" id="NomeFicha" />
+        <span asp-validation-for="NomeFicha" class="text-danger"></span>
+    </div>
+
+    <div id="exercicios-container">
+        <h3>Exercícios</h3>
+
+        <div class="exercicio-item">
+            <div class="ficha-info">
+                <label for="Exercicios_0__NomeExercicio">Nome do Exercício:</label>
+                <input asp-for="Exercicios[0].NomeExercicio" type="text" id="Exercicios_0__NomeExercicio" />
+                <span asp-validation-for="Exercicios[0].NomeExercicio" class="text-danger"></span>
+            </div>
+
+            <div class="ficha-info">
+                <label for="Exercicios_0__Series">Séries:</label>
+                <input asp-for="Exercicios[0].Series" type="number" id="Exercicios_0__Series" min="1" />
+                <span asp-validation-for="Exercicios[0].Series" class="text-danger"></span>
+            </div>
+
+            <div class="ficha-info">
+                <label for="Exercicios_0__Peso">Peso (kg):</label>
+                <input asp-for="Exercicios[0].Peso" type="number" step="0.1" min="0" id="Exercicios_0__Peso" />
+                <span asp-validation-for="Exercicios[0].Peso" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" id="add-exercicio-btn" class="btn btn-secondary mt-3">Adicionar Exercício</button>
+
+    <div class="form-buttons mt-3 d-flex justify-content-between">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Salvar Ficha</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        const addBtn = document.getElementById("add-exercicio-btn");
+        const exerciciosContainer = document.getElementById("exercicios-container");
+
+        addBtn.addEventListener("click", function () {
+            let index = exerciciosContainer.querySelectorAll(".exercicio-item").length;
+            let novoExercicio = document.createElement("div");
+            novoExercicio.classList.add("exercicio-item");
+            novoExercicio.innerHTML = `
+                <div class="ficha-info">
+                    <label for="Exercicios_${index}__NomeExercicio">Nome do Exercício:</label>
+                    <input name="Exercicios[${index}].NomeExercicio" type="text" id="Exercicios_${index}__NomeExercicio" />
+                </div>
+                <div class="ficha-info">
+                    <label for="Exercicios_${index}__Series">Séries:</label>
+                    <input name="Exercicios[${index}].Series" type="number" id="Exercicios_${index}__Series" min="1" />
+                </div>
+                <div class="ficha-info">
+                    <label for="Exercicios_${index}__Peso">Peso (kg):</label>
+                    <input name="Exercicios[${index}].Peso" type="number" step="0.1" min="0" id="Exercicios_${index}__Peso" />
+                </div>
+            `;
+            exerciciosContainer.appendChild(novoExercicio);
+        });
+    </script>
+}
