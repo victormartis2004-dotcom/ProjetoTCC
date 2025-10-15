@@ -54,6 +54,6 @@ public class FichaTreinoController : Controller
         _context.FichaTreino.Add(ficha);
         _context.SaveChanges();
 
-        return RedirectToAction("Index"); // Crie essa action depois pra listar
+        return View("~/Views/Home/Index.cshtml", model);
     }
 }
