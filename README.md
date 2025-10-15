@@ -25,3 +25,56 @@ CREATE TABLE Medidas (
         ON DELETE CASCADE
 )
 GO
+
+CREATE TABLE [dbo].[FichaTreino](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UsuarioId] [int] NOT NULL,
+	[NomeFicha] [nvarchar](100) NOT NULL,
+	[DataCriacao] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[FichaTreino] ADD  DEFAULT (getdate()) FOR [DataCriacao]
+GO
+
+ALTER TABLE [dbo].[FichaTreino]  WITH CHECK ADD FOREIGN KEY([UsuarioId])
+REFERENCES [dbo].[Usuarios] ([Id])
+GO
+
+CREATE TABLE [dbo].[ExercicioFicha](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[FichaTreinoId] [int] NOT NULL,
+	[NomeExercicio] [nvarchar](100) NOT NULL,
+	[Series] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[ExercicioFicha]  WITH CHECK ADD FOREIGN KEY([FichaTreinoId])
+REFERENCES [dbo].[FichaTreino] ([Id])
+GO
+CREATE TABLE [dbo].[PesoExercicio](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ExercicioFichaId] [int] NOT NULL,
+	[Peso] [decimal](5, 2) NOT NULL,
+	[DataRegistro] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[PesoExercicio] ADD  DEFAULT (getdate()) FOR [DataRegistro]
+GO
+
+ALTER TABLE [dbo].[PesoExercicio]  WITH CHECK ADD FOREIGN KEY([ExercicioFichaId])
+REFERENCES [dbo].[ExercicioFicha] ([Id])
+GO
